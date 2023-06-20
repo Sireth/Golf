@@ -1,6 +1,13 @@
 # Pong
 
 ----
+
+# Initialization Submodules
+
+```shell
+git submodule update --init --recursive
+```
+
 # Dependencies
 
 Installation on linux:
