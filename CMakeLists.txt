@@ -42,6 +42,7 @@ target_include_directories(pong PRIVATE externals/spdlog)
 target_link_libraries(pong PRIVATE spdlog::spdlog)
 
 # thread_pool
-add_subdirectory(externals/thread_pool)
+add_library(thread_pool externals/thread_pool/include/BS_thread_pool.hpp externals/thread_pool/include/BS_thread_pool.hpp)
+set_target_properties(thread_pool PROPERTIES LINKER_LANGUAGE CXX)
 target_include_directories(pong PRIVATE externals/thread_pool)
 target_link_libraries(pong PRIVATE thread_pool)
