@@ -1,9 +1,9 @@
 # Pong
 
-
+----
 # Dependencies
 
-## Installation on linux:
+Installation on linux:
 
 OpenAL
 ```shell

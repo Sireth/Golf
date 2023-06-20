@@ -1,3 +1,12 @@
 [submodule "externals/SFML"]
 	path = externals/SFML
 	url = https://github.com/SFML/SFML.git
+[submodule "externals/glm"]
+	path = externals/glm
+	url = https://github.com/g-truc/glm.git
+[submodule "externals/spdlog"]
+	path = externals/spdlog
+	url = https://github.com/gabime/spdlog.git
+[submodule "externals/thread_pool"]
+	path = externals/thread_pool
+	url = https://github.com/bshoshany/thread-pool.git
