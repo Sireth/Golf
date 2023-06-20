@@ -26,3 +26,8 @@ Flac
 ```shell
 sudo apt install libflac-dev
 ```
+
+Freetype
+```shell
+sudo apt install libfreetype6-dev
+```
