@@ -5,10 +5,13 @@ class GameObject;
 
 class Component {
    public:
+
+    GameObject *gameObject;
+
+
     virtual void start() = 0;
     virtual void update() = 0;
     virtual void fixedUpdate() = 0;
-    GameObject *gameObject;
 };
 
 #endif  // GOLF_COMPONENT_H

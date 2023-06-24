@@ -9,6 +9,7 @@
 #include "../headers/Camera.h"
 #include "../headers/Context.h"
 
+
 Window::Window(std::string title, const unsigned int width,
                const unsigned int height, Context *context): m_pGameContext(context) {
     m_pGameContext->setWindowData({std::move(title), width, height});
@@ -22,10 +23,10 @@ Window::Window(std::string title, const unsigned int width,
     LOG_INFO("Window \"{0}\" created!", data.title);
     m_pCurrentScene = nullptr;
 }
-
-Window::~Window() { shutdown(); }
+Window::~Window() {
+    shutdown();
+}
 void Window::on_update() {
-    // LOG_INFO("Update window \"{0}\"", m_data.title);
     m_viewMatrix = m_pGameContext->m_pCamera->getViewMatrix();
     {
         std::unique_lock<std::mutex> lock(m_pWindow_mutex);
@@ -94,8 +95,12 @@ void Window::renderObject(GameObject *gameObject) {
     gm_t[3][1] = -gm_t[3][1];
     m_pWindow->draw(sprite, glmMat4ToSfTransform(m_viewMatrix * gm_t));
 }
-void Window::setCurrentScene(Scene *scene) { m_pCurrentScene = scene; }
-void Window::on_updateScene() { m_pCurrentScene->on_update(); }
+void Window::setCurrentScene(Scene *scene) {
+    m_pCurrentScene = scene;
+}
+void Window::on_updateScene() const {
+    m_pCurrentScene->on_update();
+}
 void Window::on_updateEvents() {
     std::unique_lock<std::mutex> lock(m_pWindow_mutex);
     if(!m_pWindow->pollEvent(m_pGameContext->getEvent())) return;

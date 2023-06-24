@@ -1,8 +1,9 @@
 #include "../headers/Context.h"
 
+#include <utility>
+
 #include "../headers/Camera.h"
 
-#include <utility>
 
 void Context::setWindowData(Context::WindowData win_data) {
     m_mainWidowData = std::move(win_data);

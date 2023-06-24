@@ -3,7 +3,6 @@
 #pragma once
 
 #include <memory>
-
 #include <include/BS_thread_pool.hpp>
 
 class Context;

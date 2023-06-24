@@ -21,6 +21,17 @@ class Window{
     friend void Game::on_eventsUpdate();
 
    public:
+
+    sf::RenderWindow* m_pWindow = nullptr;
+    std::mutex m_pWindow_mutex;
+
+    glm::mat4 m_viewMatrix{1};
+
+    Scene *m_pCurrentScene;
+
+    Context *m_pGameContext;
+
+
     Window(std::string title, unsigned int width, unsigned int height, Context *context);
     ~Window();
 
@@ -30,7 +41,7 @@ class Window{
     Window& operator=(Window&&) = delete;
 
     void on_update();
-    void on_updateScene();
+    void on_updateScene() const;
     [[maybe_unused]] [[nodiscard]] unsigned int get_width() const;
     [[maybe_unused]] [[nodiscard]] unsigned int get_height() const;
 
@@ -47,14 +58,7 @@ class Window{
     void on_updateEvents();
 
 
-    sf::RenderWindow* m_pWindow = nullptr;
-    std::mutex m_pWindow_mutex;
 
-    glm::mat4 m_viewMatrix{1};
-
-    Scene *m_pCurrentScene;
-
-    Context *m_pGameContext;
 };
 
 #endif  // GOLF_WINDOW_H

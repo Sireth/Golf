@@ -28,6 +28,7 @@ class Scene {
    private:
     std::mutex m_gameObjects_mutex;
     std::list<GameObject *> m_gameObjects;
+
     Camera *m_pCamera;
 
     Context *m_pGameContext;

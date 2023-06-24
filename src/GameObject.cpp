@@ -3,8 +3,8 @@
 #include <SFML/Graphics.hpp>
 #include <glm/ext/matrix_transform.hpp>
 #include <glm/glm.hpp>
-#include "glm/gtx/euler_angles.hpp"
-#include "glm/gtx/matrix_decompose.hpp"
+#include <glm/gtx/euler_angles.hpp>
+#include <glm/gtx/matrix_decompose.hpp>
 
 #include "../headers/Component.h"
 #include "../headers/Log.h"

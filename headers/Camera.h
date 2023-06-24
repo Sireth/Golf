@@ -14,6 +14,8 @@ class Camera : public GameObject {
    public:
     float m_width2;
     float m_height2;
+
+
     glm::mat4 getViewMatrix();
 };
 

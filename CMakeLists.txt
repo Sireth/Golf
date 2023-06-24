@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.2 FATAL_ERROR)
 
 project(golf)
 
-set(GOLF_SOURCES
+set(ENGINE_SOURCES
         src/main.cpp
         src/Window.cpp
         src/utils.cpp
@@ -10,13 +10,8 @@ set(GOLF_SOURCES
         src/Camera.cpp
         src/Game.cpp
         src/GameObject.cpp
-        src/Context.cpp
-        game/ExitGameScript.cpp
-        game/PlayerScript.cpp
-        game/CameraScript.cpp
-        game/prefabs/Rectangle.cpp
-        game/prefabs/PowerRow.cpp)
-set(GOLF_HEADERS
+        src/Context.cpp)
+set(ENGINE_HEADERS
         headers/Window.h
         headers/Log.h
         headers/Game.h
@@ -25,14 +20,15 @@ set(GOLF_HEADERS
         headers/Scene.h
         headers/utils.h
         headers/Camera.h
-        headers/Context.h
-        game/ExitGameScript.h
-        game/PlayerScript.h
-        game/CameraScript.h
-        game/prefabs/Rectangle.h
-        game/prefabs/PowerRow.h game/prefabs/Collision.cpp game/prefabs/Collision.h game/prefabs/Hole.cpp game/prefabs/Hole.h game/prefabs/Ball.cpp game/prefabs/Ball.h)
+        headers/Context.h)
 
-add_executable(golf ${GOLF_SOURCES} ${GOLF_HEADERS})
+set(GAME_SOURCES
+        )
+
+set(GAME_HEADERS
+        )
+
+add_executable(golf ${ENGINE_SOURCES} ${ENGINE_HEADERS} ${GAME_SOURCES} ${GAME_HEADERS})
 
 
 # SFML

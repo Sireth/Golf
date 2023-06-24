@@ -2,7 +2,7 @@
 #define GOLF_UTILS_H
 #pragma once
 
-#include "glm/glm.hpp"
+#include <glm/glm.hpp>
 
 
 namespace sf{

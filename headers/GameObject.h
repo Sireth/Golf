@@ -5,9 +5,9 @@
 
 #include <list>
 #include <mutex>
+#include <glm/glm.hpp>
 
 #include "Scene.h"
-#include "glm/glm.hpp"
 
 class Context;
 class Component;

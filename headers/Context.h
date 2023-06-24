@@ -5,9 +5,9 @@
 #include <chrono>
 #include <glm/glm.hpp>
 #include <string>
+#include <SFML/Window.hpp>
 
 #include "Game.h"
-#include "SFML/Window/Event.hpp"
 #include "Window.h"
 #include "Scene.h"
 
@@ -30,6 +30,7 @@ class Context {
     Camera *m_pCamera{};
 
     WindowData m_mainWidowData;
+
     long deltaTime{};
 
     sf::Event m_event{};
@@ -51,28 +52,28 @@ class Context {
 
     void setCamera(Camera *camera);
 
-    bool horizontalCollision();
-
    public:
 
     Context() = default;
 
-    WindowData getWindowData(){return m_mainWidowData;};
 
-    void stopGame();
+    [[nodiscard]] bool getRunning() const{return m_running;};
+    WindowData getWindowData(){return m_mainWidowData;};
+    sf::Event &getEvent() {return m_event;};
+    glm::vec2 getMousePosition();
+
 
     void setWindowData(WindowData win_data);
 
-    [[nodiscard]] bool getRunning() const{return m_running;};
-
-    sf::Event &getEvent() {return m_event;};
 
     bool isKeyPressed(sf::Keyboard::Key keyCode);
     [[maybe_unused]] bool isMouseKeyPressed(sf::Mouse::Button keyCode);
 
-    glm::vec2 getMousePosition();
 
     glm::vec3 screenToWorldPoint(glm::vec2 pos);
+
+
+    void stopGame();
 };
 
 #endif  // GOLF_CONTEXT_H

@@ -2,8 +2,6 @@
 
 #include "../headers/Context.h"
 #include "../headers/Log.h"
-#include "../headers/Scene.h"
-
 
 
 Game::Game() : m_pGameContext(new Context()) {
@@ -29,7 +27,7 @@ void Game::start() {
     while (m_pGameContext->getRunning()) {
         now = std::chrono::steady_clock::now();
         m_pGameContext->deltaTime = std::chrono::duration_cast<std::chrono::milliseconds>(now - renderDeltaTime).count();
-        if (m_pGameContext->deltaTime >= 1000 / 60) {
+        if (m_pGameContext->deltaTime >= 1000 / 144) {
             renderDeltaTime = std::chrono::steady_clock::now();
             auto _1 = m_renderThreadPool.submit([this, &fps] {
                 on_render();
