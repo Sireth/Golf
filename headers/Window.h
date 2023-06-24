@@ -1,24 +1,27 @@
-#ifndef PONG_WINDOW_H
-#define PONG_WINDOW_H
+#ifndef GOLF_WINDOW_H
+#define GOLF_WINDOW_H
 
 #pragma once
 #include <glm/ext/matrix_float4x4.hpp>
 #include <mutex>
 #include <string>
 
-#include "Context.h"
+#include "Game.h"
 
 namespace sf {
     struct RenderWindow;
 }
 
 class GameObject;
-
 class Scene;
+class Context;
 
 class Window{
+
+    friend void Game::on_eventsUpdate();
+
    public:
-    Window(std::string title, unsigned int width, unsigned int height, Context &context);
+    Window(std::string title, unsigned int width, unsigned int height, Context *context);
     ~Window();
 
     Window(const Window&) = delete;
@@ -28,24 +31,20 @@ class Window{
 
     void on_update();
     void on_updateScene();
-    [[nodiscard]] unsigned int get_width() const { return m_data.width; }
-    [[nodiscard]] unsigned int get_height() const { return m_data.height; }
+    [[maybe_unused]] [[nodiscard]] unsigned int get_width() const;
+    [[maybe_unused]] [[nodiscard]] unsigned int get_height() const;
 
     void setCurrentScene(Scene *scene);
 
     void shutdown();
 
    private:
-    struct WindowData
-    {
-        std::string title;
-        unsigned int width;
-        unsigned int height;
-    };
 
     int init();
+
     void renderObject(GameObject *gameObject);
 
+    void on_updateEvents();
 
 
     sf::RenderWindow* m_pWindow = nullptr;
@@ -55,9 +54,7 @@ class Window{
 
     Scene *m_pCurrentScene;
 
-    WindowData m_data;
-
-    Context &m_gameContext;
+    Context *m_pGameContext;
 };
 
-#endif  // PONG_WINDOW_H
+#endif  // GOLF_WINDOW_H

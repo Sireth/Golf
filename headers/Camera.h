@@ -1,5 +1,5 @@
-#ifndef PONG_CAMERA_H
-#define PONG_CAMERA_H
+#ifndef GOLF_CAMERA_H
+#define GOLF_CAMERA_H
 
 #pragma once
 
@@ -17,4 +17,4 @@ class Camera : public GameObject {
     glm::mat4 getViewMatrix();
 };
 
-#endif  // PONG_CAMERA_H
+#endif  // GOLF_CAMERA_H

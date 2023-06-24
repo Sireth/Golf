@@ -1,33 +1,36 @@
-#ifndef PONG_SCENE_H
-#define PONG_SCENE_H
+#ifndef GOLF_SCENE_H
+#define GOLF_SCENE_H
 
 #pragma once
 
 #include <list>
+#include <mutex>
 
-#include "Camera.h"
-#include "Context.h"
-#include "GameObject.h"
+#include "Window.h"
+
+class Context;
+class Camera;
+class GameObject;
 
 class Scene {
+    friend void Window::on_update();
    public:
-    Scene(float width, float height, Context &context);
-
-    std::list<GameObject *>::iterator getGameObjectBeginIterator();
-    std::list<GameObject *>::iterator getGameObjectEndIterator();
+    Scene(float width, float height, Context *context);
 
     void addObject(GameObject *gameObject);
-    Camera *getCamera();
 
     void on_update();
 
+    Context *getContext();
+
+    void destroyGameObject(GameObject *gameObject);
 
    private:
     std::mutex m_gameObjects_mutex;
     std::list<GameObject *> m_gameObjects;
     Camera *m_pCamera;
 
-    Context &m_gameContext;
+    Context *m_pGameContext;
 };
 
-#endif  // PONG_SCENE_H
+#endif  // GOLF_SCENE_H

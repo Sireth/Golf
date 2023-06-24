@@ -1,12 +1,12 @@
-#ifndef PONG_GAME_H
-#define PONG_GAME_H
+#ifndef GOLF_GAME_H
+#define GOLF_GAME_H
 #pragma once
 
 #include <memory>
 
-#include "include/BS_thread_pool.hpp"
-#include "Context.h"
+#include <include/BS_thread_pool.hpp>
 
+class Context;
 class Window;
 
 class Game {
@@ -19,8 +19,8 @@ class Game {
     Game& operator=(const Game&) = delete;
     Game& operator=(Game&&) = delete;
 
-    [[noreturn]] int start();
-    [[noreturn]] int stop();
+    void start();
+    void stop();
     void on_render();
     void on_update();
     void on_eventsUpdate();
@@ -31,8 +31,7 @@ class Game {
     BS::thread_pool m_updateThreadPool{1};
     BS::thread_pool m_eventsUpdateThreadPool{1};
 
-    bool m_running;
-    Context m_gameContext{};
+    Context * m_pGameContext;
 };
 
-#endif  // PONG_GAME_H
+#endif  // GOLF_GAME_H

@@ -1,15 +1,16 @@
-#ifndef PONG_GAMEOBJECT_H
-#define PONG_GAMEOBJECT_H
+#ifndef GOLF_GAMEOBJECT_H
+#define GOLF_GAMEOBJECT_H
 
 #pragma once
-
-#include "Component.h"
 
 #include <list>
 #include <mutex>
 
+#include "Scene.h"
 #include "glm/glm.hpp"
 
+class Context;
+class Component;
 
 namespace sf {
 struct Texture;
@@ -17,6 +18,9 @@ struct Texture;
 
 
 class GameObject {
+
+    friend void Scene::addObject(GameObject *gameObject);
+
    protected:
     glm::mat4 m_transform{1};
     glm::vec3 m_position{0};
@@ -25,33 +29,48 @@ class GameObject {
 
     std::mutex m_transform_mutex;
 
-    sf::Texture *m_texture;
+    sf::Texture *m_texture= nullptr;
     std::mutex m_texture_mutex;
 
-    std::list<Component *> components;
+    std::mutex m_components_mutex;
+    std::list<Component *> m_components;
 
    public:
+
+    bool active = true;
+
+    Scene *m_pScene;
+
+
+    ~GameObject();
+
+    Context *getContext();
+
+    void addComponent(Component *component);
+
+    void destroy();
+
     void lockTextureMutex() {m_texture_mutex.lock();};
     sf::Texture *getTexture();
     void unlockTextureMutex() {m_texture_mutex.unlock();};
     void setTexture(sf::Texture *texture);
-    void setTexture(std::string filename);
+    [[maybe_unused]] void setTexture(std::string filename);
 
     void setPosition(glm::vec3 position);
-    void setRotation(glm::vec3 rotation);
-    void setScale(glm::vec3 scale);
+    [[maybe_unused]] void setRotation(glm::vec3 rotation);
+    [[maybe_unused]] void setScale(glm::vec3 scale);
 
     glm::vec3 getPosition();
-    glm::vec3 getRotation();
-    glm::vec3 getScale();
+    [[maybe_unused]] glm::vec3 getRotation();
+    [[maybe_unused]] glm::vec3 getScale();
 
 
 
     glm::mat4 getTransform();
-    void setTransform(glm::mat4 transform);
-    void start();
-    void update();
-    void fixedUpdate();
+    [[maybe_unused]] void setTransform(glm::mat4 transform);
+    virtual void start();
+    virtual void update();
+    virtual void fixedUpdate();
 };
 
-#endif  // PONG_GAMEOBJECT_H
+#endif  // GOLF_GAMEOBJECT_H

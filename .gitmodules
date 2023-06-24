@@ -11,3 +11,6 @@
 	path = externals/thread_pool
 	url = https://github.com/bshoshany/thread-pool.git
 
+[submodule "externals/box_2d"]
+	path = externals/box_2d
+	url = https://github.com/erincatto/box2d.git

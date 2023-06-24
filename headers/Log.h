@@ -1,5 +1,5 @@
-#ifndef PONG_LOG_H
-#define PONG_LOG_H
+#ifndef GOLF_LOG_H
+#define GOLF_LOG_H
 
 #pragma once
 
@@ -22,4 +22,4 @@
 
 #endif
 
-#endif  // PONG_LOG_H
+#endif  // GOLF_LOG_H
