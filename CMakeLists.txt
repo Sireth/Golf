@@ -23,10 +23,12 @@ set(ENGINE_HEADERS
         headers/Context.h)
 
 set(GAME_SOURCES
-        )
+        game/scenes/Menu.cpp
+        game/prefabs/Button.cpp)
 
 set(GAME_HEADERS
-        )
+        game/scenes/Menu.h
+        game/prefabs/Button.h)
 
 add_executable(golf ${ENGINE_SOURCES} ${ENGINE_HEADERS} ${GAME_SOURCES} ${GAME_HEADERS})
 

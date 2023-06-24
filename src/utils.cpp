@@ -10,3 +10,30 @@ sf::Transform glmMat4ToSfTransform(const glm::mat4& matrix) {
                             matrix[0][3], matrix[1][3], matrix[3][3]);
     return transform;
 }
+std::string getDefaultFontPath() {
+    {
+        std::string fontPath;
+
+#if defined(_WIN32) || defined(_WIN64)
+        // Windows
+        char winFontPath[MAX_PATH];
+        GetWindowsDirectory(winFontPath, MAX_PATH);
+        fontPath = std::string(winFontPath) + "\\Fonts\\arial.ttf";
+
+#elif defined(__APPLE__) || defined(__MACH__)
+        // macOS
+        fontPath = "/System/Library/Fonts/Supplemental/Arial.ttf";
+
+#elif defined(__linux__)
+        // Linux
+        fontPath = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf";
+
+#else
+        // Unsupported OS
+        std::cerr << "Unsupported operating system." << std::endl;
+        return "";
+#endif
+
+        return fontPath;
+    }
+}

@@ -3,8 +3,11 @@
 #include <utility>
 
 #include "../headers/Camera.h"
+#include "../headers/utils.h"
 
-
+Context::Context() {
+    m_defaultFont.loadFromFile(getDefaultFontPath());
+}
 void Context::setWindowData(Context::WindowData win_data) {
     m_mainWidowData = std::move(win_data);
 }
