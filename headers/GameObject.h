@@ -44,11 +44,12 @@ class GameObject {
 
     ~GameObject();
 
-    Context *getContext();
+    Context *getContext() const;
 
     void addComponent(Component *component);
 
     void destroy();
+
 
     void lockTextureMutex() {m_texture_mutex.lock();};
     sf::Texture *getTexture();

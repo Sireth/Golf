@@ -24,10 +24,12 @@ class Scene {
     Context *getContext();
 
     void destroyGameObject(GameObject *gameObject);
-
+   private:
+    void destroyGameObjects();
    private:
     std::mutex m_gameObjects_mutex;
     std::list<GameObject *> m_gameObjects;
+    std::queue<GameObject *> m_toDestroyObjects;
 
     Camera *m_pCamera;
 

@@ -45,22 +45,28 @@ void GameObject::setTexture(sf::Texture *texture) {
     m_texture = texture;
 }
 
-Context *GameObject::getContext() {
+Context *GameObject::getContext() const {
     return m_pScene->getContext();
 }
 
 void GameObject::destroy() {
-    {
-        std::unique_lock<std::mutex> lock(m_components_mutex);
-        m_components.clear();
-    }
-    m_pScene->destroyGameObject(this);
+    std::thread thread([this](){
+        {
+            std::unique_lock<std::mutex> lock(m_components_mutex);
+            m_components.clear();
+        }
+        m_pScene->destroyGameObject(this);
+    });
+    thread.detach();
 }
 
 void GameObject::addComponent(Component *component) {
-    std::unique_lock<std::mutex> lock(m_components_mutex);
-    component->gameObject = this;
-    m_components.push_back(component);
+    std::thread thread([this, component](){
+        std::unique_lock<std::mutex> lock(m_components_mutex);
+        component->gameObject = this;
+        m_components.push_back(component);
+    });
+    thread.detach();
 }
 
 [[maybe_unused]] void GameObject::setTexture(std::string filename) {
