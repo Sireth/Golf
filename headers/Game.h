@@ -24,7 +24,7 @@ class Game {
     void on_update();
     void on_eventsUpdate();
 
-   private:
+    protected:
     std::unique_ptr<Window> m_pWindow;
     BS::thread_pool m_renderThreadPool{1};
     BS::thread_pool m_updateThreadPool{1};

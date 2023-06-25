@@ -4,9 +4,14 @@
 #include "../headers/Log.h"
 
 
+
 Game::Game() : m_pGameContext(new Context()) {
-    m_pWindow = std::make_unique<Window>("Golf", 1280, 720, m_pGameContext);
-    m_pWindow->setCurrentScene(new Scene(1280, 720, m_pGameContext));
+    ///Needed to create Window and Scene
+    ///
+    /// \details
+    /// \code m_pWindow = std::make_unique<Window>("Game", 1280, 720, m_pGameContext);
+    /// m_pWindow->setCurrentScene(new Scene(1280, 720, m_pGameContext));
+    /// \endcode
 }
 
 Game::~Game() = default;

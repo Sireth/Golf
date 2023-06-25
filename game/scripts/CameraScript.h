@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "../headers/Component.h"
+#include "../../headers/Component.h"
 #include "glm/vec3.hpp"
 
 class CameraScript: public Component {

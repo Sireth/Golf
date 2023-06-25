@@ -5,9 +5,9 @@
 
 #include "../../headers/Scene.h"
 
-class Menu: public Scene {
+class Menu: virtual public Scene {
+   public:
     Menu(float width, float height, Context *context);
-
 };
 
 #endif  // GOLF_MENU_H

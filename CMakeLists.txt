@@ -24,13 +24,15 @@ set(ENGINE_HEADERS
 
 set(GAME_SOURCES
         game/scenes/Menu.cpp
-        game/prefabs/Button.cpp
-        game/ExitGameScript.cpp)
+        src/templates/Button.cpp
+        game/scripts/ExitGameScript.cpp
+        game/Golf.cpp)
 
 set(GAME_HEADERS
         game/scenes/Menu.h
-        game/prefabs/Button.h
-        game/ExitGameScript.h)
+        headers/templates/Button.h
+        game/scripts/ExitGameScript.h
+        game/Golf.h)
 
 add_executable(golf ${ENGINE_SOURCES} ${ENGINE_HEADERS} ${GAME_SOURCES} ${GAME_HEADERS})
 

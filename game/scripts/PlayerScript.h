@@ -3,11 +3,10 @@
 
 #pragma once
 
-#include "../headers/Component.h"
+#include "../../headers/Component.h"
+#include "../prefabs/PowerRow.h"
 #include "glm/vec2.hpp"
 #include "glm/vec3.hpp"
-#include "prefabs/PowerRow.h"
-
 
 class PlayerScript: public Component  {
    public:

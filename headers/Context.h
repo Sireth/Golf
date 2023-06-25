@@ -44,7 +44,6 @@ class Context {
 
     glm::vec2 m_mousePosition{};
 
-    sf::Font m_defaultFont;
 
     void updateMousePosition(glm::vec2 mousePosition);
     void setMouseKeyPressed(sf::Mouse::Button keyCode);
@@ -64,7 +63,6 @@ class Context {
     WindowData getWindowData(){return m_mainWidowData;};
     sf::Event &getEvent() {return m_event;};
     glm::vec2 getMousePosition();
-    sf::Font &getDefaultFont(){return m_defaultFont;};
 
     void setWindowData(WindowData win_data);
 

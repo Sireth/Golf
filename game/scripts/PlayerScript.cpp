@@ -1,13 +1,12 @@
 #include "PlayerScript.h"
 
-#include "../headers/Context.h"
-#include "../headers/GameObject.h"
-#include "../headers/Log.h"
+#include "../../headers/Context.h"
+#include "../../headers/GameObject.h"
+#include "../../headers/Log.h"
+#include "../prefabs/Ball.h"
 #include "SFML/Graphics.hpp"
 #include "glm/gtx/compatibility.hpp"
-#include <glm/gtx/vector_angle.hpp>
-
-#include "prefabs/Ball.h"
+#include "glm/gtx/vector_angle.hpp"
 
 void PlayerScript::start() {
 

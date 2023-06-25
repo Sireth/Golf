@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "../headers/Component.h"
+#include "../../headers/Component.h"
 
 class ExitGameScript: public Component {
    public:

@@ -3,10 +3,11 @@
 #include <SFML/Graphics.hpp>
 #include <algorithm>
 
-#include "../game/ExitGameScript.h"
+#include "../game/scripts/ExitGameScript.h"
 #include "../headers/Camera.h"
 #include "../headers/Context.h"
 #include "../headers/Log.h"
+#include "../headers/templates/Button.h"
 
 bool sortGM(GameObject *f, GameObject *s) {
     return f->getPosition().z < s->getPosition().z;
@@ -28,10 +29,6 @@ Scene::Scene(float width, float height, Context *context)
     m_pCamera = new Camera(width, height);
     context->setCamera(m_pCamera);
     addObject(m_pCamera);
-
-    auto gm = new GameObject();
-    gm->addComponent(new ExitGameScript());
-    addObject(gm);
 }
 void Scene::on_update() {
     std::unique_lock<std::mutex> lock(m_gameObjects_mutex);

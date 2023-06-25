@@ -1,8 +1,8 @@
 #include "CameraScript.h"
-#include "../headers/GameObject.h"
-#include "../headers/Log.h"
-#include "../headers/Context.h"
 
+#include "../../headers/Context.h"
+#include "../../headers/GameObject.h"
+#include "../../headers/Log.h"
 #include "glm/gtx/compatibility.hpp"
 
 void CameraScript::start() {}

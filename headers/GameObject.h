@@ -39,7 +39,7 @@ class GameObject {
 
     bool active = true;
 
-    Scene *m_pScene;
+    Scene *m_pScene = nullptr;
 
 
     ~GameObject();
