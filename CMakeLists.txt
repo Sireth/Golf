@@ -69,3 +69,8 @@ target_link_libraries(golf PRIVATE thread_pool)
 add_subdirectory(externals/box_2d)
 target_include_directories(golf PRIVATE externals/box_2d)
 target_link_libraries(golf PRIVATE box2d)
+
+#json
+add_subdirectory(externals/json)
+target_include_directories(golf PRIVATE externals/json)
+target_link_libraries(golf PRIVATE nlohmann_json::nlohmann_json)

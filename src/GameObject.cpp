@@ -42,7 +42,9 @@ void GameObject::fixedUpdate() {
 
 void GameObject::setTexture(sf::Texture *texture) {
     std::unique_lock<std::mutex> lock(m_texture_mutex);
+    delete m_texture;
     m_texture = texture;
+    m_texture->setSmooth(true);
 }
 
 Context *GameObject::getContext() const {

@@ -121,6 +121,9 @@ void Window::on_updateEvents() {
     if(event.type == sf::Event::MouseMoved){
         m_pGameContext->updateMousePosition({event.mouseMove.x, event.mouseMove.y});
     }
+    if(event.type == sf::Event::Closed){
+        m_pGameContext->stopGame();
+    }
 }
 [[maybe_unused]] unsigned int Window::get_height() const {
     auto data = m_pGameContext->getWindowData();

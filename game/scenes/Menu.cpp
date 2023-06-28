@@ -5,7 +5,7 @@
 #include "../../headers/templates/Button.h"
 #include "../../headers/templates/Text.h"
 #include "../../headers/utils.h"
-
+#include "../prefabs/Field.h"
 
 Menu::Menu(float width, float height, Context *context): Scene( width, height, context)  {
     auto background = new GameObject();
@@ -18,15 +18,15 @@ Menu::Menu(float width, float height, Context *context): Scene( width, height, c
 
     auto btnTexture = sf::Texture();
     btnTexture.setSmooth(true);
-    auto fontJost = sf::Font();
-    fontJost.loadFromFile("../game/fonts/Jost-Regular.ttf");
-    auto fontComfortaa = sf::Font();
-    fontComfortaa.loadFromFile("../game/fonts/Comfortaa-Regular.ttf");
+    auto fontJost = new sf::Font();
+    fontJost->loadFromFile("../game/fonts/Jost-Regular.ttf");
+    auto fontComfortaa = new sf::Font();
+    fontComfortaa->loadFromFile("../game/fonts/Comfortaa-Regular.ttf");
 
     auto gameName = new Text("GOLF", 96);
-    gameName->setFont(fontJost);
+    gameName->setFont(*fontJost);
     gameName->setColor(sf::Color::Black);
-    gameName->setPosition({0,296,2});
+    gameName->setPosition({0,280,2});
     addObject(gameName);
 
     auto btn1 = new Button();
@@ -34,23 +34,23 @@ Menu::Menu(float width, float height, Context *context): Scene( width, height, c
     btnTexture.setSmooth(true);
     btn1->setText("ПРОДОЛЖИТЬ");
     btn1->setCharacterSize(48);
-    btn1->setFont(fontComfortaa);
+    btn1->setFont(*fontComfortaa);
     btn1->setTextColor(sf::Color::Black);
-    btn1->setBackground(btnTexture);
     btn1->setPosition({0,132,2});
-    btn1->setMouseOverAction([btn1]{btn1->setScale({1.05f, 1.05f,1.05f});});
+    btn1->setMouseOverAction([btn1]{btn1->setScale({1.02f, 1.02f,1.02f});});
     btn1->setMouseOutAction([btn1]{btn1->setScale({1.f, 1.f,1.f});});
     addObject(btn1);
 
     auto btn2 = new Button();
+    btn1->setBackground(btnTexture);
     btnTexture.setSmooth(true);
     btn2->setText("НОВЫЙ ИГРОК");
     btn2->setCharacterSize(48);
-    btn2->setFont(fontComfortaa);
+    btn2->setFont(*fontComfortaa);
     btn2->setTextColor(sf::Color::Black);
     btn2->setBackground(btnTexture);
     btn2->setPosition({0,7,2});
-    btn2->setMouseOverAction([btn2]{btn2->setScale({1.05f, 1.05f,1.05f});});
+    btn2->setMouseOverAction([btn2]{btn2->setScale({1.02f, 1.02f,1.02f});});
     btn2->setMouseOutAction([btn2]{btn2->setScale({1.f, 1.f,1.f});});
     addObject(btn2);
 
@@ -58,11 +58,16 @@ Menu::Menu(float width, float height, Context *context): Scene( width, height, c
     btnTexture.setSmooth(true);
     btn3->setText("ЛИДЕРЫ");
     btn3->setCharacterSize(48);
-    btn3->setFont(fontComfortaa);
+    btn3->setFont(*fontComfortaa);
     btn3->setTextColor(sf::Color::Black);
     btn3->setBackground(btnTexture);
     btn3->setPosition({0,-118,2});
-    btn3->setMouseOverAction([btn3]{btn3->setScale({1.05f, 1.05f,1.05f});});
+    btn3->setMouseOverAction([btn3]{btn3->setScale({1.02f, 1.02f,1.02f});});
     btn3->setMouseOutAction([btn3]{btn3->setScale({1.f, 1.f,1.f});});
     addObject(btn3);
+
+    auto leftField = new Field(true, 1);
+    addObject(leftField);
+    auto rightField = new Field(false, 1);
+    addObject(rightField);
 }

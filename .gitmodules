@@ -14,3 +14,6 @@
 [submodule "externals/box_2d"]
 	path = externals/box_2d
 	url = https://github.com/erincatto/box2d.git
+[submodule "externals/json"]
+	path = externals/json
+	url = https://github.com/nlohmann/json.git

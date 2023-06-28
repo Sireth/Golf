@@ -77,6 +77,7 @@ void Button::updateTextureBackground() {
 
         renderTexture.display();
         auto texture = new sf::Texture(renderTexture.getTexture());
+        texture->setSmooth(true);
         setTexture(texture);
     } else {
         LOG_CRITICAL("Background of button did not create!");
@@ -100,6 +101,7 @@ void Button::updateTextureBackground(sf::Texture* texture) {
         renderTexture.display();
         delete texture;
         texture = new sf::Texture(renderTexture.getTexture());
+        texture->setSmooth(true);
         setTexture(texture);
     } else {
         LOG_CRITICAL("Background of button did not create!");

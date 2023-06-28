@@ -4,9 +4,11 @@
 #include "../../headers/utils.h"
 
 Text::Text() {
-    sf::Font font;
-    font.loadFromFile(getDefaultFontPath());
-    m_pText = std::make_unique<sf::Text>(font);
+    auto font = new sf::Font();
+    if(!font->loadFromFile(getDefaultFontPath())){
+        LOG_ERROR("Did not load font!");
+    }
+    m_pText = std::make_unique<sf::Text>(*font);
     updateTextTexture();
 }
 Text::Text(const sf::Text& text) {
@@ -14,13 +16,21 @@ Text::Text(const sf::Text& text) {
     updateTextTexture();
 }
 Text::Text(const std::string& string, unsigned characterSize) {
-    sf::Font font;
-    font.loadFromFile(getDefaultFontPath());
-    m_pText = std::make_unique<sf::Text>(font, sf::String::fromUtf8(string.begin(), string.end()), characterSize);
+    auto font = new sf::Font();
+    if(!font->loadFromFile(getDefaultFontPath())){
+        LOG_ERROR("Did not load font!");
+    }
+    m_pText = std::make_unique<sf::Text>(*font, sf::String::fromUtf8(string.begin(), string.end()), characterSize);
     updateTextTexture();
 }
 void Text::updateTextTexture() {
-
+    if(!m_pText->getFont()){
+        auto font = new sf::Font();
+        if(!font->loadFromFile(getDefaultFontPath())){
+            LOG_ERROR("Did not load font!");
+        }
+        m_pText->setFont(*font);
+    }
     sf::FloatRect textRect = m_pText->getLocalBounds();
 
     sf::RenderTexture renderTexture;
