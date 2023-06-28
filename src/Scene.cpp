@@ -14,13 +14,16 @@ bool sortGM(GameObject *f, GameObject *s) {
 }
 
 void Scene::addObject(GameObject *gameObject) {
-    {
-        std::unique_lock<std::mutex> lock(m_gameObjects_mutex);
-        m_gameObjects.push_back(gameObject);
-        m_gameObjects.sort(sortGM);
-    }
-    gameObject->m_pScene = this;
-    gameObject->start();
+    std::thread thread([gameObject, this] {
+        {
+            std::unique_lock<std::mutex> lock(m_gameObjects_mutex);
+            m_gameObjects.push_back(gameObject);
+            m_gameObjects.sort(sortGM);
+        }
+        gameObject->m_pScene = this;
+        gameObject->start();
+    });
+    thread.detach();
 }
 GameObject::~GameObject() { delete m_texture; }
 
@@ -37,12 +40,12 @@ void Scene::on_update() {
     destroyGameObjects();
 }
 void Scene::destroyGameObject(GameObject *gameObject) {
-    if(gameObject){
+    if (gameObject) {
         m_toDestroyObjects.push(gameObject);
     }
 }
 void Scene::destroyGameObjects() {
-    while (!m_toDestroyObjects.empty()){
+    while (!m_toDestroyObjects.empty()) {
         auto gameObject = m_toDestroyObjects.front();
         auto searched =
             std::find(m_gameObjects.begin(), m_gameObjects.end(), gameObject);
@@ -53,7 +56,4 @@ void Scene::destroyGameObjects() {
         delete gameObject;
     }
 }
-Context *Scene::getContext() {
-    return m_pGameContext;
-}
-
+Context *Scene::getContext() { return m_pGameContext; }

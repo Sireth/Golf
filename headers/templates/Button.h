@@ -17,12 +17,13 @@ class Button: public GameObject {
         CountActions
     };
     
-    sf::Text *m_text;
+    std::unique_ptr<sf::Text> m_pText;
     sf::Font m_font;
 
     glm::vec2 m_size;
 
     sf::Color m_backgroundColor;
+
     std::function<void()> m_actionFunctions[CountActions];
     bool m_actions[CountActions]{};
 
@@ -37,6 +38,8 @@ class Button: public GameObject {
     void setText(sf::Text text);
     void setText(const std::string& string);
     void setFont(sf::Font font);
+    void setCharacterSize(unsigned int size);
+    void setTextColor(sf::Color color);
 
    
     void setMouseClickAction(std::function<void()> action);

@@ -10,7 +10,10 @@ set(ENGINE_SOURCES
         src/Camera.cpp
         src/Game.cpp
         src/GameObject.cpp
-        src/Context.cpp)
+        src/Context.cpp
+        src/templates/Button.cpp
+        src/templates/Text.cpp)
+
 set(ENGINE_HEADERS
         headers/Window.h
         headers/Log.h
@@ -20,19 +23,23 @@ set(ENGINE_HEADERS
         headers/Scene.h
         headers/utils.h
         headers/Camera.h
-        headers/Context.h)
+        headers/Context.h
+        headers/templates/Button.h
+        headers/templates/Text.h)
 
 set(GAME_SOURCES
         game/scenes/Menu.cpp
-        src/templates/Button.cpp
         game/scripts/ExitGameScript.cpp
-        game/Golf.cpp)
+        game/Golf.cpp
+        game/prefabs/Field.cpp
+        game/prefabs/Wall.cpp)
 
 set(GAME_HEADERS
         game/scenes/Menu.h
-        headers/templates/Button.h
         game/scripts/ExitGameScript.h
-        game/Golf.h)
+        game/Golf.h
+        game/prefabs/Field.h
+        game/prefabs/Wall.h)
 
 add_executable(golf ${ENGINE_SOURCES} ${ENGINE_HEADERS} ${GAME_SOURCES} ${GAME_HEADERS})
 

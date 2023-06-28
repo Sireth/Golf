@@ -11,28 +11,28 @@ Button::Button(glm::vec2 size, sf::Color color)
     if (!m_font.loadFromFile(getDefaultFontPath())) {
         LOG_CRITICAL("We can't load font from file!");
     }
-    m_text = new sf::Text(m_font, "a");
+    m_pText = std::make_unique<sf::Text>(m_font, "a");
     updateTextureBackground();
 }
 Button::Button(sf::Text text, glm::vec2 size, sf::Color color)
-    : m_text(new sf::Text(std::move(text))),
+    : m_pText(new sf::Text(std::move(text))),
       m_size(size),
       m_backgroundColor(color) {
-    m_font = sf::Font(*m_text->getFont());
+    m_font = sf::Font(*m_pText->getFont());
     updateTextureBackground();
 }
 void Button::setText(const std::string& string) {
-    m_text->setString(string);
+    m_pText->setString(sf::String::fromUtf8(string.begin(), string.end()));
     updateTextureBackground();
 }
 void Button::setText(sf::Text text) {
-    delete m_text;
-    m_text = new sf::Text(std::move(text));
-    m_font = *m_text->getFont();
+    m_pText = std::make_unique<sf::Text>(std::move(text));
+    m_font = *m_pText->getFont();
     updateTextureBackground();
 }
 void Button::setFont(sf::Font font) {
     m_font = std::move(font);
+    m_pText->setFont(m_font);
     updateTextureBackground();
 }
 void Button::setSize(glm::vec2 size) {
@@ -49,6 +49,14 @@ void Button::setBackground(const sf::Texture& texture) {
     m_size = {size.x, size.y};
     updateTextureBackground(background);
 }
+void Button::setCharacterSize(unsigned int size) {
+    m_pText->setCharacterSize(size);
+    updateTextureBackground();
+}
+void Button::setTextColor(sf::Color color) {
+    m_pText->setFillColor(color);
+    updateTextureBackground();
+}
 void Button::updateTextureBackground() {
     sf::RectangleShape rectangle({m_size.x, m_size.y});
     rectangle.setFillColor(m_backgroundColor);
@@ -58,14 +66,14 @@ void Button::updateTextureBackground() {
     if (renderTexture.create({static_cast<unsigned>(m_size.x),
                               static_cast<unsigned>(m_size.y)})) {
         /// Centering Text
-        sf::FloatRect textRect = m_text->getLocalBounds();
-        m_text->setOrigin({textRect.left + textRect.width / 2.0f,
+        sf::FloatRect textRect = m_pText->getLocalBounds();
+        m_pText->setOrigin({textRect.left + textRect.width / 2.0f,
                            textRect.top + textRect.height / 2.0f});
-        m_text->setPosition({m_size.x / 2, m_size.y / 2});
+        m_pText->setPosition({m_size.x / 2, m_size.y / 2});
         renderTexture.clear(sf::Color::Transparent);
         renderTexture.draw(rectangle);
 
-        renderTexture.draw(*m_text);
+        renderTexture.draw(*m_pText);
 
         renderTexture.display();
         auto texture = new sf::Texture(renderTexture.getTexture());
@@ -80,14 +88,14 @@ void Button::updateTextureBackground(sf::Texture* texture) {
     if (renderTexture.create({static_cast<unsigned>(m_size.x),
                               static_cast<unsigned>(m_size.y)})) {
         /// Centering Text
-        sf::FloatRect textRect = m_text->getLocalBounds();
-        m_text->setOrigin({textRect.left + textRect.width / 2.0f,
+        sf::FloatRect textRect = m_pText->getLocalBounds();
+        m_pText->setOrigin({textRect.left + textRect.width / 2.0f,
                            textRect.top + textRect.height / 2.0f});
-        m_text->setPosition({m_size.x / 2, m_size.y / 2});
+        m_pText->setPosition({m_size.x / 2, m_size.y / 2});
         renderTexture.clear(sf::Color::Transparent);
         renderTexture.draw(sprite);
 
-        renderTexture.draw(*m_text);
+        renderTexture.draw(*m_pText);
 
         renderTexture.display();
         delete texture;
@@ -172,4 +180,3 @@ void Button::startMouseFunctions() {
         m_actionFunctions[Out]();
     }
 }
-

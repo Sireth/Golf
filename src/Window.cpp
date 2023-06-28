@@ -52,7 +52,8 @@ int Window::init() {
     std::unique_lock<std::mutex> lock(m_pWindow_mutex);
     auto data = m_pGameContext->getWindowData();
     m_pWindow = new sf::RenderWindow(
-        sf::VideoMode({data.width, data.height}), data.title);
+        sf::VideoMode({data.width, data.height}), data.title, sf::Style::Close, sf::ContextSettings(8,8,8));
+
     if (!m_pWindow) {
         LOG_CRITICAL("Can't create window {0} with size {1}x{2}", data.title,
                      data.width, data.height);
