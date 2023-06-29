@@ -7,8 +7,9 @@
 
 Context::Context() {
 }
-void Context::setWindowData(Context::WindowData win_data) {
+void Context::setWindowData(Context::WindowData win_data, Window *window) {
     m_mainWidowData = std::move(win_data);
+    m_pWindow = window;
 }
 void Context::stopGame() { m_running = false; }
 bool Context::isKeyPressed(sf::Keyboard::Key keyCode) {
@@ -42,4 +43,13 @@ glm::vec3 Context::screenToWorldPoint(glm::vec2 pos) {
     auto camPos = m_pCamera->getPosition();
     return (glm::vec3(pos, 0) + camPos - glm::vec3(m_mainWidowData.width / 2,m_mainWidowData.height / 2, 0))*glm::vec3(1,-1,1);
 
+}
+void Context::setGame(Game *game) {
+    m_pGame = game;
+}
+Game *Context::getGame() {
+    return m_pGame;
+}
+Window *Context::getWindow() {
+    return m_pWindow;
 }

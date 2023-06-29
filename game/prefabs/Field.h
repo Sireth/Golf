@@ -21,6 +21,7 @@ class Field: public GameObject {
     bool m_left = false;
 
     bool neededReload = false;
+    bool m_play = false;
 
 
     b2World m_world{{0,0}};
@@ -40,7 +41,7 @@ class Field: public GameObject {
     ContactListener m_contactListener{this};
 
    public:
-    Field(bool isLeft, uint level);
+    Field(bool isLeft, uint level, bool isPlay = false);
 
     void start() override;
 

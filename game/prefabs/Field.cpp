@@ -16,7 +16,7 @@ enum UserData{
     WALL = 6
 };
 
-Field::Field(bool isLeft, uint level): m_level(level), m_left(isLeft) {
+Field::Field(bool isLeft, uint level, bool isPlay): m_level(level), m_left(isLeft), m_play(isPlay) {
     std::string filename = "../game/sprites/field_";
     if(isLeft){
         filename += "left.png";
@@ -48,9 +48,11 @@ void Field::setLevel(uint level) {
     if(m_pBall) {
         m_world.DestroyBody(m_pBall->m_body);
         m_pBall->destroy();
+        m_pBall = nullptr;
     }
     if(m_pHole) {
         m_pHole->destroy();
+        m_pHole = nullptr;
     }
     loadFromFile();
 
@@ -117,6 +119,9 @@ void Field::loadFromFile() {
     m_pBall = new Ball();
     m_pBall->setPosition(ballPos);
     m_pScene->addObject(m_pBall);
+    if(m_play){
+        m_pBall->player = true;
+    }
 
     //box 2d
     auto circle = new b2CircleShape();

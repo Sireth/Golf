@@ -11,6 +11,7 @@ Game::Game() : m_pGameContext(new Context()) {
     /// \details
     /// \code m_pWindow = std::make_unique<Window>("Game", 1280, 720, m_pGameContext);
     /// m_pWindow->setCurrentScene(new Scene(1280, 720, m_pGameContext));
+    /// m_pGameContext->setGame(this);
     /// \endcode
 }
 

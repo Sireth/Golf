@@ -39,7 +39,7 @@ set(GAME_HEADERS
         game/scripts/ExitGameScript.h
         game/Golf.h
         game/prefabs/Field.h
-        game/prefabs/Wall.h game/prefabs/Ball.cpp game/prefabs/Ball.h game/prefabs/Hole.cpp game/prefabs/Hole.h)
+        game/prefabs/Wall.h game/prefabs/Ball.cpp game/prefabs/Ball.h game/prefabs/Hole.cpp game/prefabs/Hole.h game/scripts/TextInput.cpp game/scripts/TextInput.h game/scenes/GameScene.cpp game/scenes/GameScene.h)
 
 add_executable(golf ${ENGINE_SOURCES} ${ENGINE_HEADERS} ${GAME_SOURCES} ${GAME_HEADERS})
 

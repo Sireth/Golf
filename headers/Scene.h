@@ -14,6 +14,7 @@ class GameObject;
 
 class Scene {
     friend void Window::on_update();
+
    public:
     Scene(float width, float height, Context *context);
 
@@ -24,9 +25,11 @@ class Scene {
     Context *getContext();
 
     void destroyGameObject(GameObject *gameObject);
-   private:
+
+   protected:
     void destroyGameObjects();
-   private:
+
+   protected:
     std::mutex m_gameObjects_mutex;
     std::list<GameObject *> m_gameObjects;
     std::queue<GameObject *> m_toDestroyObjects;

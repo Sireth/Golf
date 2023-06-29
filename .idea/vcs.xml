@@ -5,6 +5,7 @@
     <mapping directory="$PROJECT_DIR$/externals/SFML" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/externals/box_2d" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/externals/glm" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/externals/json" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/externals/spdlog" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/externals/thread_pool" vcs="Git" />
   </component>

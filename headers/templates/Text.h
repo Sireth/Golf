@@ -22,6 +22,8 @@ class Text: public GameObject{
     void setFont(const sf::Font& font);
     void setCharacterSize(unsigned size);
 
+    std::string getString();
+
 
     protected:
      void updateTextTexture();

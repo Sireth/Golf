@@ -6,6 +6,7 @@
 #include "../../headers/Scene.h"
 
 class Menu: virtual public Scene {
+    std::string m_playerName;
    public:
     Menu(float width, float height, Context *context);
 };

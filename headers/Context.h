@@ -24,13 +24,16 @@ class Context {
     struct WindowData
     {
         std::string title;
-        unsigned int width{};
-        unsigned int height{};
+        unsigned width{};
+        unsigned height{};
     };
 
     Camera *m_pCamera{};
 
+    Game *m_pGame{};
+
     WindowData m_mainWidowData;
+    Window *m_pWindow{};
 
     long deltaTime{};
 
@@ -64,7 +67,10 @@ class Context {
     sf::Event &getEvent() {return m_event;};
     glm::vec2 getMousePosition();
 
-    void setWindowData(WindowData win_data);
+    void setWindowData(WindowData win_data, Window *window);
+    void setGame(Game *game);
+    Game *getGame();
+    Window *getWindow();
 
 
     bool isKeyPressed(sf::Keyboard::Key keyCode);

@@ -12,7 +12,7 @@
 
 Window::Window(std::string title, const unsigned int width,
                const unsigned int height, Context *context): m_pGameContext(context) {
-    m_pGameContext->setWindowData({std::move(title), width, height});
+    m_pGameContext->setWindowData({std::move(title), width, height}, this);
     auto data = m_pGameContext->getWindowData();
     LOG_INFO("Creating window \"{0}\" with size {1}x{2}...", data.title,
              data.width, data.height);
@@ -97,6 +97,7 @@ void Window::renderObject(GameObject *gameObject) {
     m_pWindow->draw(sprite, glmMat4ToSfTransform(m_viewMatrix * gm_t));
 }
 void Window::setCurrentScene(Scene *scene) {
+//    delete m_pCurrentScene;
     m_pCurrentScene = scene;
 }
 void Window::on_updateScene() const {

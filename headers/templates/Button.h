@@ -24,7 +24,7 @@ class Button: public GameObject {
 
     sf::Color m_backgroundColor;
 
-    std::function<void()> m_actionFunctions[CountActions];
+    std::vector<std::function<void()>> m_actionFunctions{CountActions, []{return ;}};
     bool m_actions[CountActions]{};
 
     void updateTextureBackground();

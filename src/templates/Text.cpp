@@ -71,3 +71,6 @@ void Text::setCharacterSize(unsigned int size) {
     m_pText->setCharacterSize(size);
     updateTextTexture();
 }
+std::string Text::getString() {
+    return m_pText->getString();
+}
