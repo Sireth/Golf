@@ -1,17 +1,14 @@
-#ifndef PONG_HOLE_H
-#define PONG_HOLE_H
+#ifndef GOLF_HOLE_H
+#define GOLF_HOLE_H
+
+#pragma once
 
 #include "../../headers/GameObject.h"
 
-class Hole: public GameObject{
-   public:
-    enum {
-        RADIUS = 30,
-    };
-    Hole(glm::vec3 position);
 
-    char bonus = 1;
+class Hole: public GameObject {
+   public:
+    Hole();
 };
 
-
-#endif  // PONG_HOLE_H
+#endif  // GOLF_HOLE_H

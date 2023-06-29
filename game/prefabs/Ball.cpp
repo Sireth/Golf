@@ -1,40 +1,31 @@
 #include "Ball.h"
 
-#include "../../headers/GameObject.h"
+#include <SFML/Graphics.hpp>
+#include <random>
+
 #include "../../headers/Log.h"
-#include "SFML/Graphics/CircleShape.hpp"
-#include "SFML/Graphics/RenderTexture.hpp"
-#include "glm/gtx/compatibility.hpp"
 
 #define SCALE 30
 
-Ball::Ball(char number, glm::vec3 position): number(number) {
-
-    LOG_INFO("Player created");
-    sf::CircleShape circle(RADIUS);
-    sf::RenderTexture texture;
-
-
-    texture.create({2 * RADIUS,2 * RADIUS});
-    texture.setSmooth(true);
-    texture.clear(sf::Color::Transparent);
-
-    circle.setFillColor(sf::Color::White);
-
-    texture.draw(circle);
-
-    circle.setFillColor(colors[number]);
-    circle.setRadius(RADIUS-3);
-    circle.setOrigin({-3,-3});
-
-    texture.draw(circle);
-    texture.display();
-    setPosition(position);
-    auto *nt = new sf::Texture(texture.getTexture());
-    setTexture(nt);
+Ball::Ball() {
+    auto texture = new sf::Texture();
+    if(!texture->loadFromFile("../game/sprites/ball.png")){
+        LOG_ERROR("Texture ball did not load!");
+    }
+    setTexture(texture);
 }
 void Ball::fixedUpdate() {
     GameObject::fixedUpdate();
+
     auto pos = m_body->GetPosition();
-    setPosition({pos.x*SCALE,pos.y*SCALE, getPosition().z});
+
+    setPosition({pos.x*SCALE, pos.y*SCALE, getPosition().z});
+    if(!player){
+        if(m_body->GetLinearVelocity().LengthSquared() <= 0.2f){
+            std::random_device dev;
+            std::mt19937 rng(dev());
+            std::uniform_real_distribution<float> dist(2,18);
+            m_body->SetLinearVelocity({dist(rng), dist(rng)});
+        }
+    }
 }
