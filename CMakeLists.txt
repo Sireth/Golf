@@ -40,7 +40,8 @@ set(GAME_SOURCES
         game/prefabs/HoleNumber.cpp
         game/prefabs/ScoreText.cpp
         game/scripts/PlayerScript.cpp
-        game/prefabs/PowerRow.cpp)
+        game/prefabs/PowerRow.cpp
+        game/scripts/CheckEnd.cpp)
 
 set(GAME_HEADERS
         game/scenes/Menu.h
@@ -55,7 +56,8 @@ set(GAME_HEADERS
         game/prefabs/HoleNumber.h
         game/prefabs/ScoreText.h
         game/scripts/PlayerScript.h
-        game/prefabs/PowerRow.h game/scripts/CheckEnd.cpp game/scripts/CheckEnd.h)
+        game/prefabs/PowerRow.h
+        game/scripts/CheckEnd.h)
 
 add_executable(golf ${ENGINE_SOURCES} ${ENGINE_HEADERS} ${GAME_SOURCES} ${GAME_HEADERS})
 
