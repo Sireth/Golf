@@ -1,12 +1,8 @@
 [
     {
-        "left_level": 1,
-        "player": "#qwerty",
-        "right_level": 1
-    },
-    {
         "left_level": 2,
-        "player": "#sireth",
-        "right_level": 1
+        "player": "#oppo",
+        "right_level": 1,
+        "strokes_count": 11
     }
 ]

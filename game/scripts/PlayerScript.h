@@ -17,6 +17,7 @@ class PlayerScript: public Component  {
     bool leftMousePressed = false;
 
     PowerRow *powerRow = nullptr;
+//    int m_strokesCount = 0;
 
     glm::vec2 mousePos;
     glm::vec2 oldMousePos;

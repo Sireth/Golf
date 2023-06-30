@@ -76,7 +76,10 @@ void Window::shutdown() {
     LOG_ERROR("Window \"{0}\" already closed", data.title);
 }
 void Window::renderObject(GameObject *gameObject) {
-    gameObject->lockTextureMutex();
+    if(gameObject)
+        gameObject->lockTextureMutex();
+    else
+        return ;
     sf::Texture *texture = gameObject->getTexture();
 
     if (!texture || !gameObject->active) {
@@ -97,6 +100,7 @@ void Window::renderObject(GameObject *gameObject) {
     m_pWindow->draw(sprite, glmMat4ToSfTransform(m_viewMatrix * gm_t));
 }
 void Window::setCurrentScene(Scene *scene) {
+    std::unique_lock<std::mutex> lock(m_pWindow_mutex);
 //    delete m_pCurrentScene;
     m_pCurrentScene = scene;
 }

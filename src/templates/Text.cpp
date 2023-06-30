@@ -9,11 +9,11 @@ Text::Text() {
         LOG_ERROR("Did not load font!");
     }
     m_pText = std::make_unique<sf::Text>(*font);
-    updateTextTexture();
+//    updateTextTexture();
 }
 Text::Text(const sf::Text& text) {
     m_pText = std::make_unique<sf::Text>(text);
-    updateTextTexture();
+//    updateTextTexture();
 }
 Text::Text(const std::string& string, unsigned characterSize) {
     auto font = new sf::Font();
@@ -21,7 +21,7 @@ Text::Text(const std::string& string, unsigned characterSize) {
         LOG_ERROR("Did not load font!");
     }
     m_pText = std::make_unique<sf::Text>(*font, sf::String::fromUtf8(string.begin(), string.end()), characterSize);
-    updateTextTexture();
+//    updateTextTexture();
 }
 void Text::updateTextTexture() {
     if(!m_pText->getFont()){
@@ -33,19 +33,19 @@ void Text::updateTextTexture() {
     }
     sf::FloatRect textRect = m_pText->getLocalBounds();
 
-    sf::RenderTexture renderTexture;
-    if (renderTexture.create({static_cast<unsigned>(textRect.width),
+    auto *renderTexture = new sf::RenderTexture();
+    if (renderTexture->create({static_cast<unsigned>(textRect.width),
                               static_cast<unsigned>(textRect.height)})) {
         // Centering Text
         m_pText->setOrigin({textRect.left + textRect.width / 2.0f,
                             textRect.top + textRect.height / 2.0f});
         m_pText->setPosition({textRect.width / 2, textRect.height / 2});
-        renderTexture.clear(sf::Color::Transparent);
+        renderTexture->clear(sf::Color::Transparent);
 
-        renderTexture.draw(*m_pText);
+        renderTexture->draw(*m_pText);
 
-        renderTexture.display();
-        auto texture = new sf::Texture(renderTexture.getTexture());
+        renderTexture->display();
+        auto texture = new sf::Texture(renderTexture->getTexture());
         setTexture(texture);
     } else {
         LOG_CRITICAL("Background of button did not create!");

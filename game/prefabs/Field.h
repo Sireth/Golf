@@ -6,6 +6,8 @@
 #include <box2d/box2d.h>
 
 #include "../../headers/GameObject.h"
+#include "../../headers/templates/Text.h"
+#include "HoleNumber.h"
 
 class Wall;
 class Ball;
@@ -20,8 +22,12 @@ class Field: public GameObject {
     uint m_level = 1;
     bool m_left = false;
 
+
+
     bool neededReload = false;
     bool m_play = false;
+
+    HoleNumber *m_pHoleNumber{};
 
 
     b2World m_world{{0,0}};
@@ -50,6 +56,9 @@ class Field: public GameObject {
     void reload(){ neededReload =true;}
 
     void fixedUpdate() override;
+
+    [[nodiscard]] uint getLevel() const{return m_level;}
+    bool m_dontPlay = false;
 };
 
 #endif  // GOLF_FIELD_H

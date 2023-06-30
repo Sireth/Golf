@@ -1,6 +1,6 @@
 {
   "start_ball_pos": [2, 18],
-  "hole_pos": [7,6],
+  "hole_pos": [11,6],
   "walls": [
     {
       "pos": [0, 0],

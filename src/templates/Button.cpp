@@ -62,21 +62,21 @@ void Button::updateTextureBackground() {
     rectangle.setFillColor(m_backgroundColor);
     sf::Font font;
 
-    sf::RenderTexture renderTexture;
-    if (renderTexture.create({static_cast<unsigned>(m_size.x),
+    auto *renderTexture = new sf::RenderTexture();
+    if (renderTexture->create({static_cast<unsigned>(m_size.x),
                               static_cast<unsigned>(m_size.y)})) {
         /// Centering Text
         sf::FloatRect textRect = m_pText->getLocalBounds();
         m_pText->setOrigin({textRect.left + textRect.width / 2.0f,
                            textRect.top + textRect.height / 2.0f});
         m_pText->setPosition({m_size.x / 2, m_size.y / 2});
-        renderTexture.clear(sf::Color::Transparent);
-        renderTexture.draw(rectangle);
+        renderTexture->clear(sf::Color::Transparent);
+        renderTexture->draw(rectangle);
 
-        renderTexture.draw(*m_pText);
+        renderTexture->draw(*m_pText);
 
-        renderTexture.display();
-        auto texture = new sf::Texture(renderTexture.getTexture());
+        renderTexture->display();
+        auto texture = new sf::Texture(renderTexture->getTexture());
         texture->setSmooth(true);
         setTexture(texture);
     } else {
@@ -84,23 +84,23 @@ void Button::updateTextureBackground() {
     }
 }
 void Button::updateTextureBackground(sf::Texture* texture) {
-    sf::RenderTexture renderTexture;
+    auto *renderTexture = new sf::RenderTexture();
     sf::Sprite sprite(*texture);
-    if (renderTexture.create({static_cast<unsigned>(m_size.x),
+    if (renderTexture->create({static_cast<unsigned>(m_size.x),
                               static_cast<unsigned>(m_size.y)})) {
         /// Centering Text
         sf::FloatRect textRect = m_pText->getLocalBounds();
         m_pText->setOrigin({textRect.left + textRect.width / 2.0f,
                            textRect.top + textRect.height / 2.0f});
         m_pText->setPosition({m_size.x / 2, m_size.y / 2});
-        renderTexture.clear(sf::Color::Transparent);
-        renderTexture.draw(sprite);
+        renderTexture->clear(sf::Color::Transparent);
+        renderTexture->draw(sprite);
 
-        renderTexture.draw(*m_pText);
+        renderTexture->draw(*m_pText);
 
-        renderTexture.display();
+        renderTexture->display();
         delete texture;
-        texture = new sf::Texture(renderTexture.getTexture());
+        texture = new sf::Texture(renderTexture->getTexture());
         texture->setSmooth(true);
         setTexture(texture);
     } else {

@@ -32,14 +32,30 @@ set(GAME_SOURCES
         game/scripts/ExitGameScript.cpp
         game/Golf.cpp
         game/prefabs/Field.cpp
-        game/prefabs/Wall.cpp)
+        game/prefabs/Wall.cpp
+        game/prefabs/Ball.cpp
+        game/prefabs/Hole.cpp
+        game/scripts/TextInput.cpp
+        game/scenes/GameScene.cpp
+        game/prefabs/HoleNumber.cpp
+        game/prefabs/ScoreText.cpp
+        game/scripts/PlayerScript.cpp
+        game/prefabs/PowerRow.cpp)
 
 set(GAME_HEADERS
         game/scenes/Menu.h
         game/scripts/ExitGameScript.h
         game/Golf.h
         game/prefabs/Field.h
-        game/prefabs/Wall.h game/prefabs/Ball.cpp game/prefabs/Ball.h game/prefabs/Hole.cpp game/prefabs/Hole.h game/scripts/TextInput.cpp game/scripts/TextInput.h game/scenes/GameScene.cpp game/scenes/GameScene.h)
+        game/prefabs/Wall.h
+        game/prefabs/Ball.h
+        game/prefabs/Hole.h
+        game/scripts/TextInput.h
+        game/scenes/GameScene.h
+        game/prefabs/HoleNumber.h
+        game/prefabs/ScoreText.h
+        game/scripts/PlayerScript.h
+        game/prefabs/PowerRow.h game/scripts/CheckEnd.cpp game/scripts/CheckEnd.h)
 
 add_executable(golf ${ENGINE_SOURCES} ${ENGINE_HEADERS} ${GAME_SOURCES} ${GAME_HEADERS})
 
